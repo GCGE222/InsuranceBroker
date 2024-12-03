@@ -3,12 +3,12 @@ services:
     name: insurance-comparison
     env: python
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: gunicorn a_core.wsgi:application
+    startCommand: gunicorn a_core.wsgi:application --config gunicorn_config.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.2
-      - key: DATABASE_URL
-        value: sqlite:///db.sqlite3  # For development. In production, you should use PostgreSQL
+      - key: PORT
+        value: 8000
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: DJANGO_DEBUG
