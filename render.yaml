@@ -3,7 +3,7 @@ services:
     name: insurance-comparison
     env: python
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: gunicorn a_core.wsgi:application --config gunicorn_config.py
+    startCommand: cd $RENDER_PROJECT_DIR && gunicorn --bind 0.0.0.0:$PORT a_core.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.2
