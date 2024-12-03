@@ -3,7 +3,9 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-5q@_my=+gray2_x918$a^!y&(hkv2%s488*qf92$m=1@_o=h14'
+from django.core.management.utils import get_random_secret_key
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
 
 DEBUG = False
 
