@@ -7,11 +7,19 @@ from django.core.management.utils import get_random_secret_key
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-secret-key-here')
 DEBUG = False
-ALLOWED_HOSTS = ['https://insurancebroker.onrender.com/', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://insurancebroker.onrender.com/']
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+ALLOWED_HOSTS = []
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Also add these for development and your Render subdomain
+ALLOWED_HOSTS.extend([
+    '127.0.0.1',
+    'localhost',
+    '.onrender.com',  # Allows all subdomains of onrender.com
+])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
