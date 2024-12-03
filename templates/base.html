@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Insurance Comparison{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="{% url 'marketplace:home' %}" class="flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">InsuranceCompare</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'marketplace:home' %}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="{% url 'marketplace:preferences' %}" class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium">Compare Plans</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="mt-auto py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                © 2024 InsuranceCompare. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

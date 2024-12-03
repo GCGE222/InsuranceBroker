@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="relative">
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                    <div class="w-1/4 shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <div class="text-blue-600 font-medium">Basic Info</div>
+                    <div class="text-gray-400">Healthcare Needs</div>
+                    <div class="text-gray-400">Coverage Preferences</div>
+                    <div class="text-gray-400">Providers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Tell us about yourself</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="space-y-6">
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                        <div class="mt-1">
+                            <input type="number" name="age" id="age" required
+                                   class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                   min="0" max="120">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="zip_code" class="block text-sm font-medium text-gray-700">ZIP Code</label>
+                        <div class="mt-1">
+                            <input type="text" name="zip_code" id="zip_code" required
+                                   class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                   pattern="[0-9]{5}">
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">Enter your 5-digit ZIP code</p>
+                    </div>
+
+                    <div>
+                        <label for="coverage_start_date" class="block text-sm font-medium text-gray-700">
+                            When do you need coverage to start?
+                        </label>
+                        <div class="mt-1">
+                            <input type="date" name="coverage_start_date" id="coverage_start_date" required
+                                   class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="current_insurance" id="current_insurance"
+                                   class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="current_insurance" class="font-medium text-gray-700">
+                                I currently have health insurance
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="rounded-md bg-red-50 p-4 mt-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-700">{{ message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="flex justify-between mt-8">
+                    <a href="{% url 'marketplace:preferences_back_button' %}" 
+                       class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Back
+                    </a>
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

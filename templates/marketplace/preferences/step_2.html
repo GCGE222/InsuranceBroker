@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="relative">
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                    <div class="w-2/4 shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <div class="text-gray-400">Basic Info</div>
+                    <div class="text-blue-600 font-medium">Healthcare Needs</div>
+                    <div class="text-gray-400">Coverage Preferences</div>
+                    <div class="text-gray-400">Providers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Your Healthcare Needs</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="space-y-6">
+                    <div>
+                        <label for="doctor_visit_frequency" class="block text-sm font-medium text-gray-700">
+                            How often do you typically visit doctors?
+                        </label>
+                        <div class="mt-1">
+                            <select name="doctor_visit_frequency" id="doctor_visit_frequency" required
+                                    class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                <option value="rarely">Rarely (0-1 times per year)</option>
+                                <option value="occasionally">Occasionally (2-3 times per year)</option>
+                                <option value="regularly">Regularly (4-6 times per year)</option>
+                                <option value="frequently">Frequently (7+ times per year)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="has_medical_conditions" id="has_medical_conditions"
+                                   class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="has_medical_conditions" class="font-medium text-gray-700">
+                                I have ongoing medical conditions that require regular care
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="needs_prescription_coverage" id="needs_prescription_coverage"
+                                   class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="needs_prescription_coverage" class="font-medium text-gray-700">
+                                I need prescription drug coverage
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="planned_procedures" class="block text-sm font-medium text-gray-700">
+                            Do you have any planned medical procedures or treatments in the next year?
+                        </label>
+                        <div class="mt-1">
+                            <textarea name="planned_procedures" id="planned_procedures" rows="3"
+                                      class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">This helps us find plans that cover your upcoming medical needs.</p>
+                    </div>
+
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="needs_specialist_visits" id="needs_specialist_visits"
+                                   class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="needs_specialist_visits" class="font-medium text-gray-700">
+                                I need to see medical specialists
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="rounded-md bg-red-50 p-4 mt-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-700">{{ message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="flex justify-between mt-8">
+                    <a href="{% url 'marketplace:preferences_back_button' %}" 
+                       class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Back
+                    </a>
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

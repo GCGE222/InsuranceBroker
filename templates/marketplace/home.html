@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Compare Health Insurance Plans{% endblock %}
+{% block content %}
+
+<div class="bg-gradient-to-r from-blue-600 to-blue-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+            Find the Perfect Health Insurance Plan
+        </h1>
+        <p class="mt-4 text-xl text-white">
+            Compare health insurance plans side by side and make an informed decision for your healthcare needs.
+        </p>
+        <div class="mt-10">
+            <a href="{% url 'marketplace:preferences' %}"
+               class="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition duration-150 ease-in-out">
+                Start Comparing Plans
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Why Compare With Us?
+            </h2>
+            <p class="mt-4 text-lg text-gray-600">
+                Make informed decisions with our comprehensive comparison tools.
+            </p>
+        </div>
+
+        <div class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div class="relative p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div class="rounded-full bg-blue-600 p-3">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="mt-8 text-xl font-medium text-gray-900 text-center">
+                    Easy Comparison
+                </h3>
+                <p class="mt-4 text-gray-600">
+                    Compare plans side by side with our intuitive interface designed for simplicity.
+                </p>
+            </div>
+
+            <div class="relative p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div class="rounded-full bg-blue-600 p-3">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="mt-8 text-xl font-medium text-gray-900 text-center">
+                    Personalized Results
+                </h3>
+                <p class="mt-4 text-gray-600">
+                    Get recommendations tailored to your specific healthcare needs and preferences.
+                </p>
+            </div>
+
+            <div class="relative p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div class="rounded-full bg-blue-600 p-3">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="mt-8 text-xl font-medium text-gray-900 text-center">
+                    Comprehensive Information
+                </h3>
+                <p class="mt-4 text-gray-600">
+                    Access detailed plan information and make confident decisions about your healthcare coverage.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

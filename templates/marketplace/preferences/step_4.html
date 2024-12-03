@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="relative">
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                    <div class="w-full shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <div class="text-gray-400">Basic Info</div>
+                    <div class="text-gray-400">Healthcare Needs</div>
+                    <div class="text-gray-400">Coverage Preferences</div>
+                    <div class="text-blue-600 font-medium">Providers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Your Preferred Healthcare Providers</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="space-y-6">
+                    <div>
+                        <label for="preferred_providers" class="block text-sm font-medium text-gray-700">
+                            Preferred Doctors and Healthcare Providers
+                        </label>
+                        <p class="mt-1 text-sm text-gray-500">
+                            Enter the names of your current or preferred healthcare providers, one per line.
+                        </p>
+                        <div class="mt-2">
+                            <textarea name="preferred_providers" id="preferred_providers" rows="3"
+                                      class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="preferred_hospitals" class="block text-sm font-medium text-gray-700">
+                            Preferred Hospitals and Medical Facilities
+                        </label>
+                        <p class="mt-1 text-sm text-gray-500">
+                            Enter the names of hospitals or medical facilities you prefer, one per line.
+                        </p>
+                        <div class="mt-2">
+                            <textarea name="preferred_hospitals" id="preferred_hospitals" rows="3"
+                                      class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="preferred_pharmacies" class="block text-sm font-medium text-gray-700">
+                            Preferred Pharmacies
+                        </label>
+                        <p class="mt-1 text-sm text-gray-500">
+                            Enter the names of pharmacies you prefer to use, one per line.
+                        </p>
+                        <div class="mt-2">
+                            <textarea name="preferred_pharmacies" id="preferred_pharmacies" rows="3"
+                                      class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-md bg-blue-50 p-4 mt-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-blue-800">Why this matters</h3>
+                            <div class="mt-2 text-sm text-blue-700">
+                                Knowing your preferred healthcare providers helps us identify insurance plans that include them in their networks. This can help you maintain continuity of care and potentially reduce out-of-pocket costs.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="rounded-md bg-red-50 p-4 mt-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-700">{{ message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="flex justify-between mt-8">
+                    <a href="{% url 'marketplace:preferences_back_button' %}" 
+                       class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Back
+                    </a>
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Find Plans
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

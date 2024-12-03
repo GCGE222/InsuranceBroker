@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="relative">
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                    <div class="w-3/4 shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <div class="text-gray-400">Basic Info</div>
+                    <div class="text-gray-400">Healthcare Needs</div>
+                    <div class="text-blue-600 font-medium">Coverage Preferences</div>
+                    <div class="text-gray-400">Providers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Coverage Preferences</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="space-y-6">
+                    <div>
+                        <label for="max_monthly_premium" class="block text-sm font-medium text-gray-700">
+                            Maximum Monthly Premium
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="number" name="max_monthly_premium" id="max_monthly_premium" required
+                                   min="0" step="50"
+                                   class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">/month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="preferred_deductible" class="block text-sm font-medium text-gray-700">
+                            Preferred Annual Deductible
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="number" name="preferred_deductible" id="preferred_deductible"
+                                   min="0" step="100"
+                                   class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">/year</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="preferred_max_out_of_pocket" class="block text-sm font-medium text-gray-700">
+                            Preferred Out-of-Pocket Maximum
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="number" name="preferred_max_out_of_pocket" id="preferred_max_out_of_pocket"
+                                   min="0" step="100"
+                                   class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">/year</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Select Important Benefits</label>
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {% for benefit in benefit_options %}
+                            <div class="relative flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" name="desired_benefits" value="{{ benefit }}"
+                                           class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label class="font-medium text-gray-700">{{ benefit }}</label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="rounded-md bg-red-50 p-4 mt-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-700">{{ message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="flex justify-between mt-8">
+                    <a href="{% url 'marketplace:preferences_back_button' %}" 
+                       class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Back
+                    </a>
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
