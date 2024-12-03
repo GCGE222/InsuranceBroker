@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.core.management.utils import get_random_secret_key
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
-
+CSRF_TRUSTED_ORIGINS = ['https://insurancebroker.onrender.com']
 DEBUG = False
 
 ALLOWED_HOSTS = ['https://insurancebroker.onrender.com', 'localhost', '127.0.0.1']
