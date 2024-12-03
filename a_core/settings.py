@@ -5,7 +5,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-5q@_my=+gray2_x918$a^!y&(hkv2%s488*qf92$m=1@_o=h14'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
