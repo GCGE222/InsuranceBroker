@@ -5,11 +5,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 from django.core.management.utils import get_random_secret_key
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
-CSRF_TRUSTED_ORIGINS = ['https://insurancebroker.onrender.com']
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-secret-key-here')
 DEBUG = False
-
-ALLOWED_HOSTS = ['https://insurancebroker.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*.onrender.com', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -33,6 +35,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
 ]
 
 ROOT_URLCONF = 'a_core.urls'
