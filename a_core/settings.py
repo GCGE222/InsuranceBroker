@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-5q@_my=+gray2_x918$a^!y&(hkv2%s488*qf92$m=1@_o=h14
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://insurancebroker.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
