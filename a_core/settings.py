@@ -7,8 +7,8 @@ from django.core.management.utils import get_random_secret_key
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-secret-key-here')
 DEBUG = False
-ALLOWED_HOSTS = ['*.onrender.com', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+ALLOWED_HOSTS = ['https://insurancebroker.onrender.com/', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://insurancebroker.onrender.com/']
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
